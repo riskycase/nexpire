@@ -1,0 +1,43 @@
+package com.riskycase.nexpire
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        val viewPager: ViewPager = findViewById(R.id.view_pager)
+        val tabs: TabLayout = findViewById(R.id.tabs)
+        tabs.addTab(tabs.newTab().setText("Upcoming"))
+        tabs.addTab(tabs.newTab().setText("Expired"))
+        tabs.tabGravity = TabLayout.GRAVITY_FILL
+        val adapter = MyAdapter(this, supportFragmentManager, tabs.tabCount)
+        viewPager.adapter = adapter
+        viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+        tabs.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                viewPager.currentItem = tab?.position ?: 0
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+        })
+        val fab: FloatingActionButton = findViewById(R.id.fab)
+
+        fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+        }
+    }
+}
