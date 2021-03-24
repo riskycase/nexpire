@@ -1,4 +1,4 @@
-package com.riskycase.nexpire
+package com.riskycase.nexpire.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.riskycase.nexpire.dummy.DummyContent
+import com.riskycase.nexpire.DatabaseHelper
+import com.riskycase.nexpire.R
+import java.util.*
 
 /**
  * A fragment representing a list of Items.
@@ -36,7 +38,7 @@ class Upcoming : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyUpcomingRecyclerViewAdapter(DummyContent.ITEMS)
+                adapter = MyUpcomingRecyclerViewAdapter(DatabaseHelper(context).allItems.filter { item -> item.expiry > Calendar.getInstance().timeInMillis })
             }
         }
         return view

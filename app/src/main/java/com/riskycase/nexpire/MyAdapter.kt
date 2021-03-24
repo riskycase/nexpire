@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.riskycase.nexpire.ui.Expired
+import com.riskycase.nexpire.ui.Upcoming
 
 @Suppress("DEPRECATION")
 internal class MyAdapter (

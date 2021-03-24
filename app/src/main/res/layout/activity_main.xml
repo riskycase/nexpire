@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_primary"
+        android:background="@color/theme"
         android:theme="@style/Theme.Nexpire.AppBarOverlay">
 
         <TextView
@@ -26,7 +26,7 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/design_default_color_primary"
+            android:background="@color/theme"
             app:tabTextColor="@color/design_default_color_on_primary"
             app:tabIndicatorColor="@color/design_default_color_on_primary" />
     </com.google.android.material.appbar.AppBarLayout>

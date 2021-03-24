@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginVertical="11dp">
+            android:layout_marginVertical="21dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -53,35 +53,33 @@
 
         </LinearLayout>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textNumberTitle"
-            android:text="Select number of days before expiry date to get notification"
-            android:layout_marginVertical="11dp"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
-            android:layout_marginVertical="11dp"
-            android:id="@+id/pickerNumber">
+            android:orientation="vertical"
+            android:id="@+id/reminderDate"
+            android:gravity="center"
+            android:layout_margin="21dp">
 
             <TextView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:text="-"
-                android:gravity="center"
-                android:id="@+id/daysMinus"
-                android:textSize="25sp"
-                android:layout_marginHorizontal="3dp"
-                android:background="@drawable/circle"
-                android:textColor="@color/design_default_color_primary"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textNumberTitle"
+                android:text="Select number of days before expiry date to get notification"
+                android:layout_marginVertical="11dp"/>
+
+            <com.google.android.material.slider.Slider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/daysBefore"
+                android:valueFrom="1"
+                android:valueTo="2"
+                android:stepSize="1" />
 
             <TextView
-                android:layout_width="40dp"
+                android:layout_width="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:minWidth="40dp"
                 android:layout_height="40dp"
                 android:text="1"
                 android:gravity="center"
@@ -90,17 +88,6 @@
                 android:layout_marginHorizontal="3dp"
                 android:background="@drawable/circle_selected"
                 android:textColor="@color/design_default_color_on_primary"/>
-
-            <TextView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:text="+"
-                android:gravity="center"
-                android:id="@+id/daysPlus"
-                android:textSize="25sp"
-                android:layout_marginHorizontal="3dp"
-                android:background="@drawable/circle"
-                android:textColor="@color/design_default_color_primary"/>
 
         </LinearLayout>
 
@@ -137,7 +124,8 @@
             android:id="@+id/button_first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add"
+            android:layout_margin="21dp"
+            android:text="Save"
         />
     </LinearLayout>
 

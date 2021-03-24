@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.riskycase.nexpire.ui.MyUpcomingRecyclerViewAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addItem(Item item) {
+    public void addItem(Item item) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -52,10 +54,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    Item getItem(int id) {
+    public Item getItem(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_ITEMS, new String[] {KEY_ID, KEY_NAME, KEY_EXPIRY, KEY_REMINDER}, KEY_ID + "=?", new String[] {String.valueOf(id)}, null, null, KEY_EXPIRY, null);
+        Cursor cursor = db.query(TABLE_ITEMS,
+                new String[] {KEY_ID, KEY_NAME, KEY_EXPIRY, KEY_REMINDER},
+                KEY_ID + "=?", new String[] {String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
         if(cursor != null)
             cursor.moveToFirst();
         db.close();
@@ -67,11 +75,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    List<Item> getAllItems() {
+    public List<Item> getAllItems() {
         List<Item> itemList = new ArrayList<Item>();
-        String selectAll = "SELECT * FROM " + TABLE_ITEMS;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectAll, null);
+
+        Cursor cursor = db.query(TABLE_ITEMS,
+                new String[] {KEY_ID, KEY_NAME, KEY_EXPIRY, KEY_REMINDER},
+                null,
+                null,
+                null,
+                null,
+                KEY_EXPIRY + " ASC");
 
         if(cursor.moveToFirst()) {
             do
@@ -89,7 +103,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  itemList;
     }
 
-    int updateItem(Item item) {
+    public int updateItem(Item item) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -102,10 +116,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    void deleteItem(Item item) {
+    public void deleteItem(long id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.delete(TABLE_ITEMS, KEY_ID+"=?", new String[]{String.valueOf(item.getID())});
+        db.delete(TABLE_ITEMS, KEY_ID+"=?", new String[]{String.valueOf(id)});
         db.close();
 
     }
