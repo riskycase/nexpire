@@ -22,10 +22,12 @@
 
         <activity
             android:name=".NewItem"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/title_activity_new_item"
             android:theme="@style/Theme.Nexpire.NoActionBar" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/app_name"
             android:theme="@style/Theme.Nexpire.NoActionBar">
             <intent-filter>

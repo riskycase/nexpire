@@ -20,7 +20,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Nexpire.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Nexpire.AppBarOverlay" parent="Theme.AppCompat">
+        <item name="android:textSize">24dp</item>
+        <item name="android:fontFamily">@font/manuale</item>
+        <item name="backgroundImage">@drawable/white_ceramic_texture</item>
+    </style>
 
     <style name="Theme.Nexpire.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

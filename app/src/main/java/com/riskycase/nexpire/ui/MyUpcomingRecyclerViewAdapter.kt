@@ -63,18 +63,19 @@ class MyUpcomingRecyclerViewAdapter(
         end.set(Calendar.MINUTE, 0)
         end.set(Calendar.SECOND, 0)
         end.set(Calendar.MILLISECOND, 0)
-        val days = (end.timeInMillis - start.timeInMillis) / (1000 * 3600 * 24)
-        holder.expiredView.text = "Expiring ${
-            if(days.toInt() == 1)
+        val days = ((end.timeInMillis - start.timeInMillis) / (1000 * 3600 * 24)).toInt()
+        if(days in 1..4)
+            holder.upcomingDaysView.setTextColor(Color.parseColor("#FFF32013"))
+        holder.upcomingDaysView.text = "Expiring ${
+            if(days == 1)
                 "tomorrow"
-            else if(days.toInt() <= 7)
-                "on ${SimpleDateFormat("EEEE").format(Date(item.expiry))} (${SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(Date(item.expiry))})"
+            else if(days < 8)
+                "on ${SimpleDateFormat("EEEE").format(Date(item.expiry))}"
             else
-                "in ${days} days (${SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(Date(item.expiry))})"
+                "in ${days} days"
         }"
-        if(days.toInt() <= 7) {
-            holder.expiredView.setTextColor(Color.parseColor("#FFF32013"))
-        }
+        if(days > 1)
+            holder.upcomingDateView.text = "(${SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(Date(item.expiry))})"
         holder.deleteView.setOnClickListener { view ->
             deleteId = item.id
             AlertDialog.Builder(view.context)
@@ -94,7 +95,8 @@ class MyUpcomingRecyclerViewAdapter(
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameView: TextView = view.findViewById(R.id.item_name)
-        val expiredView: TextView = view.findViewById(R.id.expired)
+        val upcomingDaysView: TextView = view.findViewById(R.id.upcomingDays)
+        val upcomingDateView: TextView = view.findViewById(R.id.upcomingDate)
         val editView: ImageView = view.findViewById(R.id.edit_item)
         val deleteView: ImageView = view.findViewById(R.id.delete_item)
 

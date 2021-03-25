@@ -27,6 +27,12 @@ import kotlin.math.min
 
 class NewItem : AppCompatActivity() {
 
+    override fun onBackPressed() {
+        val myIntent = Intent(this, MainActivity::class.java)
+        startActivity(myIntent)
+        finish()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_item)

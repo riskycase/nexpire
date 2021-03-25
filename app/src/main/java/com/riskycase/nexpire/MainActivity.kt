@@ -12,8 +12,13 @@ import com.google.android.material.tabs.TabLayout
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.logging.Logger
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
+
+    override fun onBackPressed() {
+        finish()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
