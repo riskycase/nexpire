@@ -53,7 +53,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/quattrocento_bold"
-            android:text="Lavkush Sharma"/> 
+            android:text="Lavkush Sharma"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quattrocento_bold"
+            android:text="Sumedha Panja"/>
 
         <TextView
             android:layout_width="wrap_content"
