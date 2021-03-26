@@ -38,7 +38,8 @@ class Upcoming : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyUpcomingRecyclerViewAdapter(DatabaseHelper(context).allItems.filter { item -> item.expiry > Calendar.getInstance().timeInMillis })
+                adapter = MyUpcomingRecyclerViewAdapter(DatabaseHelper(context).allItems.filter { item ->
+                    item.expiry > Calendar.getInstance().timeInMillis })
             }
         }
         return view

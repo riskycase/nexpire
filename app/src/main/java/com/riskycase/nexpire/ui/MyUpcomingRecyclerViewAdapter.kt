@@ -32,7 +32,8 @@ class MyUpcomingRecyclerViewAdapter(
         when (which) {
             DialogInterface.BUTTON_POSITIVE -> {
                 dbh.deleteItem(deleteId)
-                values = dbh.allItems
+                values = dbh.allItems.filter { item ->
+                    item.expiry > Calendar.getInstance().timeInMillis }
                 notifyDataSetChanged()
             }
             else -> ""
