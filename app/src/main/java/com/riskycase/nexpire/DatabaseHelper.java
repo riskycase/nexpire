@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.riskycase.nexpire.ui.MyUpcomingRecyclerViewAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,12 +65,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(cursor != null)
             cursor.moveToFirst();
         db.close();
-        return new Item(
+
+        assert cursor != null;
+        Item item = new Item(
                 cursor.getLong(0),
                 cursor.getString(1),
                 cursor.getLong(2),
                 cursor.getLong(3)
         );
+
+        cursor.close();
+
+        return item;
     }
 
     public List<Item> getAllItems() {
@@ -99,6 +103,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         db.close();
+
+        cursor.close();
 
         return  itemList;
     }

@@ -3,16 +3,11 @@ package com.riskycase.nexpire
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import java.text.SimpleDateFormat
-import java.util.*
-import java.util.logging.Logger
-import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,6 +48,11 @@ class MainActivity : AppCompatActivity() {
             val myIntent = Intent(this, NewItem::class.java)
             startActivity(myIntent)
             finish()
+        }
+
+        findViewById<ImageView>(R.id.infoImage).setOnClickListener { view ->
+            val myIntent = Intent(this, InfoActivity::class.java)
+            startActivity(myIntent)
         }
 
     }

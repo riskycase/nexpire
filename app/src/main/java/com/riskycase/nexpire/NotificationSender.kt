@@ -1,6 +1,5 @@
 package com.riskycase.nexpire
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -8,16 +7,14 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import java.text.SimpleDateFormat
 import java.util.*
 
 class NotificationSender: BroadcastReceiver() {
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onReceive(context: Context?, intent: Intent?) {
         val dbh = DatabaseHelper(context)
         val item: Item? = intent?.getLongExtra("id", 0)?.let { dbh.getItem(it) }
@@ -41,15 +38,14 @@ class NotificationSender: BroadcastReceiver() {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pintent = PendingIntent.getActivity(context, 0, startIntent, 0)
-//        Toast.makeText(context, intent?.getLongExtra("id", 0)?.let { dbh.getItem(it).name }, Toast.LENGTH_SHORT).show()
 
         val builder = NotificationCompat.Builder(context, "reminder")
                 .setSmallIcon(R.drawable.ic_baseline_access_alarm)
-                .setContentTitle("${item?.name} is expiring ${
+                .setContentTitle("${item.name} is expiring ${
                     if (days.toInt() == 1)
                         "tomorrow"
                     else
-                        "in ${days} days (at ${SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(Date(item.expiry))})"
+                        "in $days days (at ${SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(Date(item.expiry))})"
                 }")
                 .setContentText("Click here to view more info")
                 .setPriority(NotificationManager.IMPORTANCE_DEFAULT)

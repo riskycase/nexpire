@@ -9,26 +9,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nexpire">
-        
+        <activity
+            android:name=".InfoActivity"
+            android:label="@string/title_activity_info"
+            android:theme="@style/Theme.Nexpire.NoActionBar"></activity>
+
         <receiver
             android:name=".NotificationSender"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.riskycase.nexpire.notify" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
 
         <activity
             android:name=".NewItem"
-            android:screenOrientation="sensorPortrait"
             android:label="@string/title_activity_new_item"
+            android:screenOrientation="sensorPortrait"
             android:theme="@style/Theme.Nexpire.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="sensorPortrait"
             android:label="@string/app_name"
+            android:screenOrientation="sensorPortrait"
             android:theme="@style/Theme.Nexpire.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

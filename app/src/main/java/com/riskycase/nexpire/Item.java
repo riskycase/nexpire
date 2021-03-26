@@ -6,11 +6,7 @@ public class Item {
     long _expiry;
     long _reminder;
     public Item() {}
-    public Item(String name, long expiry, long reminder) {
-        this._name = name;
-        this._expiry = expiry;
-        this._reminder = reminder;
-    }
+
     public Item(long id, String name, long expiry, long reminder) {
         this._id = id;
         this._name = name;

@@ -1,27 +1,21 @@
 package com.riskycase.nexpire.ui
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.DialogInterface
-import android.icu.text.LocaleDisplayNames
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import com.riskycase.nexpire.DatabaseHelper
 import com.riskycase.nexpire.Item
 import com.riskycase.nexpire.R
-
 import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * [RecyclerView.Adapter] that can display a [DummyItem].
- * TODO: Replace the implementation with code for your data type.
+ * [RecyclerView.Adapter] that can display a [Item].
  */
 class MyExpiredRecyclerViewAdapter(
     private var values: List<Item>
@@ -58,10 +52,6 @@ class MyExpiredRecyclerViewAdapter(
         start.set(Calendar.MILLISECOND, 0)
         val end = Calendar.getInstance()
         end.timeInMillis = item.expiry
-        end.set(Calendar.HOUR_OF_DAY, 0)
-        end.set(Calendar.MINUTE, 0)
-        end.set(Calendar.SECOND, 0)
-        end.set(Calendar.MILLISECOND, 0)
         val days = (start.timeInMillis - end.timeInMillis) / (1000 * 3600 * 24)
         holder.expiredView.text = "Expired ${
             if (days.toInt() == 0)
@@ -72,7 +62,11 @@ class MyExpiredRecyclerViewAdapter(
                 "${days} days ago (at ${SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(Date(item.expiry))})"
         }"
         holder.deleteView.setOnClickListener { view ->
-            AlertDialog.Builder(view.context).setMessage("Delete ${item.name} from the list?").setPositiveButton("YES", dcl).setNegativeButton("No", dcl).show()
+            AlertDialog.Builder(view.context)
+                .setMessage("Delete ${item.name} from the list?")
+                .setPositiveButton("Yes", dcl)
+                .setNegativeButton("No", dcl)
+                .show()
         }
     }
 

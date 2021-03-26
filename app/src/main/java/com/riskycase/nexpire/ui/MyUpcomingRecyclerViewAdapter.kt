@@ -4,14 +4,12 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
-import android.provider.ContactsContract
-import android.util.Log
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.riskycase.nexpire.DatabaseHelper
 import com.riskycase.nexpire.Item
 import com.riskycase.nexpire.NewItem
@@ -20,8 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * [RecyclerView.Adapter] that can display a [DummyItem].
- * TODO: Replace the implementation with code for your data type.
+ * [RecyclerView.Adapter] that can display a [Item].
  */
 class MyUpcomingRecyclerViewAdapter(
         private var values: List<Item>)
@@ -59,10 +56,6 @@ class MyUpcomingRecyclerViewAdapter(
         start.set(Calendar.MILLISECOND, 0)
         val end = Calendar.getInstance()
         end.timeInMillis = item.expiry
-        end.set(Calendar.HOUR_OF_DAY, 0)
-        end.set(Calendar.MINUTE, 0)
-        end.set(Calendar.SECOND, 0)
-        end.set(Calendar.MILLISECOND, 0)
         val days = ((end.timeInMillis - start.timeInMillis) / (1000 * 3600 * 24)).toInt()
         if(days in 1..4)
             holder.upcomingDaysView.setTextColor(Color.parseColor("#FFF32013"))
@@ -80,7 +73,7 @@ class MyUpcomingRecyclerViewAdapter(
             deleteId = item.id
             AlertDialog.Builder(view.context)
                     .setMessage("Delete ${item.name} from the list?")
-                    .setPositiveButton("YES", dcl)
+                    .setPositiveButton("Yes", dcl)
                     .setNegativeButton("No", dcl)
                     .show()
         }
